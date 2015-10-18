@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.wb.model;
 
 /**
@@ -11,6 +10,7 @@ package com.wb.model;
  * @author Anuruddha
  */
 public class Item {
+
     private String itemId;
     private String name;
     private String desc;
@@ -20,6 +20,7 @@ public class Item {
     private double reorderLevel;
     private String category;
     private Double quantity;
+    public static String searchItemID = null;
 
     /**
      * @return the itemId
@@ -168,5 +169,5 @@ public class Item {
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
-    
+
 }

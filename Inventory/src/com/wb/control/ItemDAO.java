@@ -150,6 +150,7 @@ public class ItemDAO {
                 c.setUnitPrice(r.getDouble("item_Uprice"));
                 c.setLocation(r.getString("item_Location"));
                 c.setReorderLevel(r.getDouble("item_Rlevel"));
+                c.setQuantity(r.getDouble("item_Qty"));
                 l.add(c);
             }
 
@@ -159,24 +160,57 @@ public class ItemDAO {
         }
         return l;
     }
-    public Item getItem(String ID){
-     
-        String sql = "select * from item where item_ID ='"+ID+"';";
-        Item i =null;
+
+    public Item getItem(String ID) {
+
+        String sql = "select * from item where item_ID ='" + ID + "';";
+        Item i = null;
         try {
             Connection con = DBFactory.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet r = ps.executeQuery();
-            if (r.next()){
-             i = new Item();
-             i.setUnit(r.getString("item_Unit"));
-            
+            if (r.next()) {
+                i = new Item();
+                i.setItemId(r.getString("item_ID"));
+                i.setName(r.getString("item_Name"));
+                i.setDesc(r.getString("item_Des"));
+                i.setUnit(r.getString("item_Unit"));
+                i.setUnitPrice(r.getDouble("item_Uprice"));
+                i.setLocation(r.getString("item_Location"));
+                i.setReorderLevel(r.getDouble("item_Rlevel"));
+                i.setQuantity(r.getDouble("item_Qty"));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error :" + ex.getMessage());
         }
-        
-    return i;
+
+        return i;
+    }
+
+    public List<Item> listByName(String itemName) {
+        List<Item> l = new ArrayList<Item>();
+        try {
+            String sql = "select * from item where item_Name like '%" + itemName + "%' ;"; //?? - stands for empty parameters
+            Connection con = DBFactory.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet r = ps.executeQuery();
+            while (r.next()) {
+                Item c = new Item();
+                c.setItemId(r.getString("item_ID"));
+                c.setName(r.getString("item_Name"));
+                c.setDesc(r.getString("item_Des"));
+                c.setUnit(r.getString("item_Unit"));
+                c.setUnitPrice(r.getDouble("item_Uprice"));
+                c.setLocation(r.getString("item_Location"));
+                c.setReorderLevel(r.getDouble("item_Rlevel"));
+                l.add(c);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error :" + e.getMessage());
+        }
+        return l;
     }
 }

@@ -19,13 +19,14 @@ public class MTNDAO {
 
     public boolean insert(MTN i) {
         boolean ok = false;
+
         try {
             String sql = "INSERT INTO `transfered`(`transfered_DNo`, "
                     + "`transfered_ForLocation`, `transfered_Description`, "
                     + "`transfered_Date`,`Issued_By`,`Total`)"
                     + " VALUES (?,?,?,?,?,?)"; //?? - stands for empty parameters
-
             Connection con = DBFactory.getConnection();
+            con.setAutoCommit(false);
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, i.getMTN_No());
             ps.setString(2, i.getDestination());
@@ -43,7 +44,10 @@ public class MTNDAO {
                     + "(`transfered_No`, `item_ID`, `transfered_itemQty`, "
                     + "`transfered_itemPrice`) VALUES (?,?,"
                     + "?,?)";
+
+            String sql2 = "update item set item_Qty=item_Qty-? where item_ID=?;";
             PreparedStatement ps1 = con.prepareStatement(sql1);
+            PreparedStatement ps2 = con.prepareStatement(sql2);
 
             for (Item c : k) {
 
@@ -51,13 +55,19 @@ public class MTNDAO {
                 ps1.setString(2, c.getItemId());
                 ps1.setDouble(3, c.getQuantity());
                 ps1.setDouble(4, c.getUnitPrice());
-            
-            if (ps1.executeUpdate() > 0) {
-                ok = true;
-            }
+                
+                //setting values to remove item quatity when issued
+                ps2.setDouble(1, c.getQuantity());
+                ps2.setString(2, c.getItemId());
+                
+                if (ps1.executeUpdate() > 0 & ps2.executeUpdate() > 0) {
+                    ok = true;
+                    con.commit();
+                } else {
+                    con.rollback();
+                }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error :" + e.getMessage());
         }
         return ok;

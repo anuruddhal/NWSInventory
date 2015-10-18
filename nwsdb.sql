@@ -212,3 +212,38 @@ ALTER TABLE `transfered_item`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+DROP PROCEDURE IF EXISTS add_item;
+DELIMITER //
+CREATE PROCEDURE add_item(IN pitem_id VARCHAR(250),IN pitem_qty double, IN pitem_uprice double)
+ BEGIN
+ DECLARE vitem_qty double;
+ DECLARE vitem_price double;
+ DECLARE vunit_price double;
+ 
+ SELECT item_Qty,item_Uprice 
+ into vitem_qty,vitem_price
+ FROM item
+ WHERE item_ID = pitem_id;
+ 
+ set vunit_price= round((((pitem_qty*pitem_uprice)+(vitem_qty*vitem_price))/(vitem_qty+pitem_qty)),2) ;
+ update  item set item_Qty=(vitem_qty+pitem_qty),item_Uprice=vunit_price where item_ID=pitem_id;
+ END //
+ 
+ 
+DELIMITER ;
+
+
+
+DROP PROCEDURE IF EXISTS issue_item;
+DELIMITER //
+CREATE PROCEDURE issue_item(IN pitem_id VARCHAR(250),IN pitem_qty double, IN pitem_uprice double)
+ BEGIN
+
+ update  item set item_Qty=(item_Qty-pitem_qty) where item_ID=pitem_id;
+ END //
+ DELIMITER ;
+ 

@@ -9,8 +9,6 @@ import com.wb.model.MIN;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,12 +28,12 @@ public class MINDAO {
                     + " VALUES (?,?,?,?,?,?)";
             Connection con = DBFactory.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
+            con.setAutoCommit(false);
             ps.setString(1, i.getMIN_No());
             ps.setString(2, i.getDestination());
-            ps.setString(3, i.getDescription());
-            ps.setString(4, i.getDate());
-            ps.setString(5, i.getIssued_By());
-            ps.setDouble(6, i.getTotal());
+            ps.setString(3, i.getDate());
+            ps.setString(4, i.getIssued_By());
+            ps.setDouble(5, i.getTotal());
 
             if (ps.executeUpdate() > 0) {
                 ok = true;
@@ -45,19 +43,28 @@ public class MINDAO {
                     + " `item_ID`, `issueditem_Qty`, `issueditem_Uprice`)"
                     + " VALUES (?,?,?,?)";
             PreparedStatement ps1 = con.prepareStatement(sql1);
-            
-            for (Item c : k){
-            
-            ps1.setString(1, i.getMIN_No());
-            ps1.setString(2, c.getItemId());
-            ps1.setDouble(3, c.getQuantity() );
-            ps1.setDouble(4, c.getUnitPrice());
-            
-            if (ps1.executeUpdate()>0){
-            
-            ok = true;
-            }
-            
+
+            String sql2 = "update item set item_Qty=item_Qty-? where item_ID=?;";
+
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+
+            for (Item c : k) {
+
+                ps1.setString(1, i.getMIN_No());
+                ps1.setString(2, c.getItemId());
+                ps1.setDouble(3, c.getQuantity());
+                ps1.setDouble(4, c.getUnitPrice());
+
+                //setting values to remove item quatity when issued
+                ps2.setDouble(1, c.getQuantity());
+                ps2.setString(2, c.getItemId());
+
+                if (ps1.executeUpdate() > 0 & ps2.executeUpdate() > 0) {
+                    ok = true;
+                    con.commit();
+                } else {
+                    con.rollback();
+                }
             }
 
         } catch (Exception ex) {

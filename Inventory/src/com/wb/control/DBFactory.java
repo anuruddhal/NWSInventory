@@ -15,7 +15,7 @@ public class DBFactory {
 
     static Connection connection = null; 
     static String userName = "root";
-    static String password = "";
+    static String password = "123";
     static String url = "jdbc:mysql://localhost:3306/nwsdb";
     static String driver = "com.mysql.jdbc.Driver";
 
