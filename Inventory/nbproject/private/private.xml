@@ -4,12 +4,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Inventory/src/com/wb/view/Home.java</file>
-            <file>file:/D:/Inventory/src/com/wb/view/GRNManager.java</file>
-            <file>file:/D:/Inventory/src/com/wb/view/MTNManager.java</file>
-            <file>file:/D:/Inventory/src/com/wb/control/GRNDAO.java</file>
-            <file>file:/D:/Inventory/src/com/wb/view/ViewMINDetails.java</file>
-            <file>file:/D:/Inventory/src/com/wb/view/MINManager.java</file>
+            <file>file:/Users/anuruddha/Repos/NWSInventory/Inventory/src/com/wb/view/GRNManager.java</file>
+            <file>file:/Users/anuruddha/Repos/NWSInventory/Inventory/src/com/wb/view/MINManager.java</file>
+            <file>file:/Users/anuruddha/Repos/NWSInventory/Inventory/src/com/wb/view/MTNManager.java</file>
         </group>
     </open-files>
 </project-private>
