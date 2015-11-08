@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reoderlevelreport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6c79e93-61d2-431e-a0dd-8b255359cc49">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM item Where item_Rlevel >= item_Qty]]>
+	</queryString>
+	<field name="item_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Des" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Cat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Unit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Location" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Uprice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Rlevel" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="145" y="0" width="285" height="31" forecolor="#1E7A9B" uuid="ed79aeaa-46ed-42f6-9586-3e991a130f29"/>
+				<textElement textAlignment="Justified">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Item Reorder Level Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="78c05e5d-ab21-4d64-adfa-da7f229b0f2a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="93" y="22" width="63" height="20" forecolor="#2883A4" uuid="aa641651-f407-4e0c-a5a8-12a38d0c25fb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="22" width="62" height="20" forecolor="#2883A4" uuid="48035907-1fc3-4cb3-b32e-b6b600ec041d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="22" width="66" height="20" forecolor="#2883A4" uuid="2dbf65ee-8949-4e24-baf7-d9b0ce47a707"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reorder Level]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="22" width="68" height="20" forecolor="#2883A4" uuid="338f241a-884f-4721-82db-ca733e8b0e21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="53" height="20" forecolor="#2883A4" uuid="8bc27809-26c7-4e64-ae37-cf84a00da715"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="22" width="78" height="20" forecolor="#2883A4" uuid="d1bcfad0-fe60-420d-843c-845d45955a92"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Uprice]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="14" width="53" height="20" uuid="14fc0406-0564-45af-81d5-348e823d49f4"/>
+				<textFieldExpression><![CDATA[$F{item_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="14" width="63" height="20" uuid="dcab4999-52d6-4883-a8da-5fc27bd704d9"/>
+				<textFieldExpression><![CDATA[$F{item_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="14" width="62" height="20" uuid="24daade2-d559-48d5-95d5-ec56a440674d"/>
+				<textFieldExpression><![CDATA[$F{item_Cat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="14" width="66" height="20" uuid="126caffb-7eb0-4a6b-8ea0-7ffc69e1ba79"/>
+				<textFieldExpression><![CDATA[$F{item_Rlevel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="14" width="68" height="20" uuid="d258a5c2-1289-48d6-b45b-87164f533f5e"/>
+				<textFieldExpression><![CDATA[$F{item_Qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="14" width="78" height="20" uuid="36ad19ca-c880-474f-ab95-d81638c98dd1"/>
+				<textFieldExpression><![CDATA[$F{item_Uprice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="200" y="18" width="80" height="20" uuid="f36af4b0-c349-4a61-94b1-0ea718dfd444"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="18" width="40" height="20" uuid="1e707940-e316-4250-8d97-77028f22d850"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MTN" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7062aa5f-c7f1-430b-a97f-0aba363cab8f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MTN_No" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT transfered. * , tra_item.transfered_itemQty, tra_item.transfered_itemPrice, item.item_Cat, item.item_Name, item.item_Unit, item.item_Uprice
+FROM  `transfered` AS transfered,  `transfered_item` AS tra_item,  `item` AS item
+WHERE  transfered.transfered_DNo = $P{MTN_No} AND transfered.transfered_DNo = tra_item.transfered_No
+AND tra_item.item_ID = item.item_ID]]>
+	</queryString>
+	<field name="transfered_DNo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transfered_ForLocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transfered_Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transfered_Date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Issued_By" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transfered_itemQty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transfered_itemPrice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Cat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Unit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Uprice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="5" width="244" height="36" forecolor="#1E7A9B" uuid="08436ed7-4b44-40aa-88c5-84e2263b496b"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Material Transfer Note]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="28" width="100" height="20" uuid="7209b6c9-bd1f-4991-961e-815ab0d146ca"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MTN No]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="7" y="4" width="100" height="20" uuid="2c6be864-7b48-4dc3-bdc1-f9119dc6e3e6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="53" width="100" height="20" uuid="8156d5bb-16f3-4265-9b99-2650aa4da9ed"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="77" width="100" height="20" uuid="2bc95fd3-ffe3-4033-9d70-5c72ff570ff8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="28" width="100" height="20" uuid="92baaaf9-324b-4dcc-8c13-aa53f093ed95"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="102" width="100" height="20" uuid="f75d1852-354c-4b8d-9fb1-0c5f0090e357"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Issued By]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="54" width="100" height="20" uuid="39ec292e-9d9d-416b-a9f0-8968522588c4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transfered_Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="102" width="100" height="20" uuid="da666c59-8f8b-4e75-8e5c-042d3d6838d4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Issued_By}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="28" width="100" height="20" uuid="3dc1ae9b-aa68-4463-9c8f-ffc8761370e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transfered_Description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="78" width="100" height="20" uuid="3fa915be-8717-4f0e-8114-7f948a05f61d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transfered_ForLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="29" width="100" height="20" uuid="c9a43d88-62b1-414f-9129-0a1d3fbe2fe3"/>
+				<textFieldExpression><![CDATA[$P{MTN_No}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="392" y="5" width="51" height="20" uuid="a4122644-71c3-4287-b048-8c5129d48099"/>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="74" height="20" uuid="210797d0-318b-4162-9188-6f7beb6e2120"/>
+				<text><![CDATA[item_Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="5" width="55" height="20" uuid="931802e4-9063-4862-aef9-63fc63dca35d"/>
+				<text><![CDATA[item_Cat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="4" width="47" height="20" uuid="ba13d6ef-a37a-41c3-890b-0f5902e2d1ac"/>
+				<text><![CDATA[item_Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="4" width="55" height="20" uuid="0bc0f192-e690-47e9-9107-71b72a168c8e"/>
+				<text><![CDATA[item_Uprice]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="394" y="6" width="64" height="20" uuid="2406da19-cd05-44c7-8c7f-afb2d9c62574"/>
+				<textFieldExpression><![CDATA[$F{transfered_itemQty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="6" width="70" height="20" uuid="f26aebcf-82d2-4a52-a923-bb31067902e8"/>
+				<textFieldExpression><![CDATA[$F{item_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="5" width="53" height="20" uuid="388810c9-7783-4470-90f1-21094b79912e"/>
+				<textFieldExpression><![CDATA[$F{item_Cat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="5" width="45" height="20" uuid="8fb55064-72f1-4320-8a18-4e9df8ca517c"/>
+				<textFieldExpression><![CDATA[$F{item_Unit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="6" width="55" height="20" uuid="c59229ac-67cf-47d7-81f3-af2d7356a7f1"/>
+				<textFieldExpression><![CDATA[$F{transfered_itemPrice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

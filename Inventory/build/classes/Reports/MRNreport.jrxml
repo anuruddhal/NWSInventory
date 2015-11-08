@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MRNreport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5e5956cc-3a0b-44b8-9ebf-1d9ebf55afda">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="From_Date" class="java.lang.String"/>
+	<parameter name="To_Date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM recieved where `grn_dateRecieved` between $P{From_Date} and $P{To_Date}]]>
+	</queryString>
+	<field name="grn_No" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grn_Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grn_Price" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grn_FromLocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grn_dateRecieved" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="0" width="268" height="32" forecolor="#1E7A9B" uuid="dfdf6f2a-8c25-46e0-8ff1-4f971ce53938"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Material Recieved Notes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="7086fba4-d73f-4cc3-9617-4bbebd430cee"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="71" height="20" forecolor="#2883A4" uuid="dba32c31-1d4d-4dbd-b38d-48f0c888f9ab"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Document No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="12" width="88" height="20" forecolor="#2883A4" uuid="079e41e9-0a33-4490-90f4-df6c6f8ef4ef"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="12" width="100" height="20" forecolor="#2883A4" uuid="2f2113a3-7fb1-4349-92e5-45698e5ee1bf"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Location]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="12" width="100" height="20" forecolor="#2883A4" uuid="e5ae8805-9d84-4bdf-9fef-ac57fc4d19c4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recieved Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="12" width="72" height="20" forecolor="#2883A4" uuid="14c581fb-9714-430c-a51a-d65a4b2f719c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="75" y="13" width="88" height="20" uuid="1b691482-ecf4-4715-b90b-b93318b45083"/>
+				<textFieldExpression><![CDATA[$F{grn_Description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="13" width="100" height="20" uuid="710baae9-4447-4ec1-a6ef-8dde6830f707"/>
+				<textFieldExpression><![CDATA[$F{grn_FromLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="13" width="100" height="20" uuid="b233eacc-41ac-4405-966b-e131f3cc28f4"/>
+				<textFieldExpression><![CDATA[$F{grn_dateRecieved}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="13" width="72" height="20" uuid="0e1f78a3-6103-447d-a39e-ca53bb4c641a"/>
+				<textFieldExpression><![CDATA[$F{grn_Price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="13" width="71" height="20" uuid="14c8f1e8-7ffe-4c0c-98cd-63bb1622637f"/>
+				<textFieldExpression><![CDATA[$F{grn_No}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="199" y="18" width="80" height="20" uuid="0b446fd7-6e10-4a16-8207-020030b972ec"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="279" y="18" width="40" height="20" uuid="a08309b3-0431-420f-9cf5-84c6ddffe0cf"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

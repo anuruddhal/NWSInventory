@@ -135,6 +135,7 @@ public class MINManager extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl1.setCellSelectionEnabled(true);
         tbl1.setPreferredSize(new java.awt.Dimension(300, 60));
         jScrollPane2.setViewportView(tbl1);
 

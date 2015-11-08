@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MITReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="05fffa33-4eee-4d74-8b56-c5626de0809e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="From_Date" class="java.lang.String"/>
+	<parameter name="To_Date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM issued where `Issued_Date` between $P{From_Date} and $P{To_Date}]]>
+	</queryString>
+	<field name="Issued_DoRefNo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issued_ForLocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issued_Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Issued_Date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Issued_By" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="183" y="2" width="230" height="36" forecolor="#1E7A9B" uuid="e728a9b6-5b11-42f2-922c-26c77be67b83"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Material Issue Notes ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="2" y="0" width="100" height="20" uuid="c4f9b49c-d184-48ee-9891-de2382482e90"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="12" width="54" height="20" forecolor="#2883A4" uuid="e4666cf1-7825-4275-9378-abeddc6a3e8f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DoRefNo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="12" width="90" height="20" forecolor="#2883A4" uuid="b8251dd0-a166-43ce-a2d8-60af292cf41d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ForLocation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="63" y="12" width="100" height="20" forecolor="#2883A4" uuid="5d51213a-9e15-46df-a8f0-fbf655060cf9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="12" width="67" height="20" forecolor="#2883A4" uuid="22d8dd4a-e6a8-47d2-a305-6eecb07f0197"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Issued Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="12" width="84" height="20" forecolor="#2883A4" uuid="354a1523-6c61-48e1-8889-827caa98d3ae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Issued By]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="12" width="75" height="20" forecolor="#2883A4" uuid="def34de2-4246-4b50-8600-bf162effee55"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="11" width="55" height="20" uuid="d1655bbd-9714-4c5f-a46e-964243ec0035"/>
+				<textFieldExpression><![CDATA[$F{Issued_DoRefNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="11" width="89" height="20" uuid="c7deffb5-de54-49f2-85b5-ad6214dc621d"/>
+				<textFieldExpression><![CDATA[$F{issued_ForLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="11" width="100" height="20" uuid="354c710c-d50e-4820-9859-058b36735dc9"/>
+				<textFieldExpression><![CDATA[$F{issued_Description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="11" width="67" height="20" uuid="b7960fe1-3fe9-4d7c-8f87-83fb4a1863c2"/>
+				<textFieldExpression><![CDATA[$F{Issued_Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="11" width="84" height="20" uuid="2a6f390f-9fa7-46a0-bc52-36519e235770"/>
+				<textFieldExpression><![CDATA[$F{Issued_By}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="11" width="75" height="20" uuid="6c41fb61-ddd6-4e65-b364-c4fba52611a5"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="201" y="17" width="80" height="20" uuid="cbf6de56-2207-43bc-add8-7f6dcd0ef441"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="281" y="17" width="40" height="20" uuid="91821cba-6ed0-4130-a483-4186413cff20"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

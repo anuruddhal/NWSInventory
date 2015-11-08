@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MIN" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MIN_No" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT issued.*,iss_item.issueditem_Qty,iss_item.issueditem_Uprice,item.item_Cat,item.item_Name,item.item_Unit,item.item_Uprice FROM `issued` as issued,`issued_item` as iss_item, `item` as item  WHERE issued.Issued_DoRefNo = $P{MIN_No} AND issued.Issued_DoRefNo = iss_item.issueditem_RefNo and iss_item.item_ID = item.item_ID]]>
+	</queryString>
+	<field name="Issued_DoRefNo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issued_ForLocation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issued_Description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Issued_Date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Issued_By" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issueditem_Qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issueditem_Uprice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Cat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Unit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="item_Uprice" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="5" width="233" height="36" forecolor="#1E7A9B" />
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Material Issued Note]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="28" width="100" height="20" />
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MIN No]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="7" y="4" width="100" height="20" />
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="53" width="100" height="20" />
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="77" width="100" height="20" />
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="28" width="100" height="20" />
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="102" width="100" height="20" />
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Issued By]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="54" width="100" height="20" />
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Issued_Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="102" width="100" height="20" />
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Issued_By}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="28" width="100" height="20" />
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{issued_Description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="78" width="100" height="20" />
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{issued_ForLocation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="28" width="100" height="20" />
+				<textFieldExpression><![CDATA[$P{MIN_No}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="392" y="5" width="51" height="20" />
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="5" width="74" height="20" />
+				<text><![CDATA[item_Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="5" width="55" height="20" />
+				<text><![CDATA[item_Cat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="4" width="47" height="20" />
+				<text><![CDATA[item_Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="4" width="55" height="20" />
+				<text><![CDATA[item_Uprice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="2" width="63" height="20" />
+				<text><![CDATA[Issued Price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField>
+				<reportElement x="394" y="6" width="51" height="20" />
+				<textFieldExpression><![CDATA[$F{issueditem_Qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="6" width="70" height="20" />
+				<textFieldExpression><![CDATA[$F{item_Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="5" width="53" height="20" />
+				<textFieldExpression><![CDATA[$F{item_Cat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="5" width="45" height="20" />
+				<textFieldExpression><![CDATA[$F{item_Unit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="6" width="55" height="20" />
+				<textFieldExpression><![CDATA[$F{item_Uprice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="5" width="63" height="20" />
+				<textFieldExpression><![CDATA[$F{issueditem_Uprice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
