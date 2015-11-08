@@ -81,6 +81,7 @@ public class MINManager extends javax.swing.JFrame {
         txtQtyHand = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextPane();
+        txtDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MIN Manager");
@@ -231,7 +232,8 @@ public class MINManager extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMIN, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(txtDestination))
+                            .addComponent(txtDestination)
+                            .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(48, 48, 48)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -288,9 +290,15 @@ public class MINManager extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel8)
                             .addComponent(txtMIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel2)
-                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel2)
+                                .addGap(13, 13, 13))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -412,7 +420,7 @@ public class MINManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "MIN No field can't be empty!");
             valid = false;
         }
-        if (txtDate.getText().length() == 0) {
+        if (txtDate.getDate().toString().length() == 0) {
             JOptionPane.showMessageDialog(null, "Date field can't be empty!");
             valid = false;
         }
@@ -425,7 +433,7 @@ public class MINManager extends javax.swing.JFrame {
             MIN i = new MIN();
             i.setMIN_No(txtMIN.getText());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(txtDate.getSelectedDate().getTime());
+            String date = sdf.format(txtDate.getDate().getTime());
             i.setDate(date);
             i.setDestination(txtDestination.getText());
             i.setDescription(txtDesc.getText());
@@ -568,6 +576,7 @@ public class MINManager extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl1;
+    private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextPane txtDesc;
     private javax.swing.JTextField txtDestination;
     private javax.swing.JTextField txtItemID;

@@ -76,6 +76,7 @@ public class MTNManager extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
+        txtDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Item Manager");
@@ -224,7 +225,8 @@ public class MTNManager extends javax.swing.JFrame {
                                 .addGap(37, 37, 37)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtMTN, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                    .addComponent(txtDest))
+                                    .addComponent(txtDest)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(36, 36, 36)
                                 .addComponent(jLabel8)
                                 .addGap(30, 30, 30)
@@ -272,8 +274,10 @@ public class MTNManager extends javax.swing.JFrame {
                             .addComponent(txtMTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -387,7 +391,7 @@ public class MTNManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "MTN No field can't be empty!");
             valid = false;
         }
-        if (txtDate.getText().length() == 0) {
+        if (txtDate.getDate().toString().length() == 0) {
             JOptionPane.showMessageDialog(null, "Date field can't be empty!");
             valid = false;
         }
@@ -401,7 +405,7 @@ public class MTNManager extends javax.swing.JFrame {
             MTN i = new MTN();
             i.setMTN_No(txtMTN.getText());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date = sdf.format(txtDate.getSelectedDate().getTime());
+            String date = sdf.format(txtDate.getDate());
             i.setDate(date);
             i.setDestination(txtDest.getText());
             i.setDescription(txtDesc.getText());
@@ -507,7 +511,6 @@ public class MTNManager extends javax.swing.JFrame {
     public void clearMTN() {
 
         txtMTN.setText("");
-        txtDate.setText("");
         txtDesc.setText("");
         txtDest.setText("");
         l.clear();
@@ -540,6 +543,7 @@ public class MTNManager extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblMTN;
+    private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtDest;
     private javax.swing.JTextField txtItemID;

@@ -6,6 +6,7 @@ package com.wb.control;
 
 import com.wb.model.Item;
 import com.wb.model.MIN;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -44,10 +45,9 @@ public class MINDAO {
                     + " VALUES (?,?,?,?)";
             PreparedStatement ps1 = con.prepareStatement(sql1);
 
-            String sql2 = "update item set item_Qty=item_Qty-? where item_ID=?;";
-
-            PreparedStatement ps2 = con.prepareStatement(sql2);
-
+            String procedure = "{ call add_item(?,?, ?) }";
+            PreparedStatement ps2 = con.prepareStatement(procedure);
+            CallableStatement stmt  = con.prepareCall(procedure);
             for (Item c : k) {
 
                 ps1.setString(1, i.getMIN_No());
@@ -59,7 +59,10 @@ public class MINDAO {
                 ps2.setDouble(1, c.getQuantity());
                 ps2.setString(2, c.getItemId());
 
-                if (ps1.executeUpdate() > 0 & ps2.executeUpdate() > 0) {
+                stmt.setString(1, c.getItemId());
+                stmt.setDouble(2, c.getQuantity());
+                stmt.setDouble(3, c.getUnitPrice());
+                if (ps1.executeUpdate() > 0 & ps2.executeUpdate() > 0 & stmt.executeUpdate()>0) {
                     ok = true;
                     con.commit();
                 } else {
